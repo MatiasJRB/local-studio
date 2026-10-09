@@ -1,0 +1,16 @@
+node_modules/
+dist/
+playwright-report/
+test-results/
+coverage/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.webm
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.mp3
+*.log

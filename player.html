@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Video local · Para tu reacción</title>
+    <link rel="stylesheet" href="/src/studio.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Tu video, en esta pestaña.</h1>
+      <p>
+        Elegí un archivo de video. No se sube. Después compartí esta pestaña
+        desde el estudio, con Compartir audio activado. Empezá a grabar y volvé
+        acá para darle play.
+      </p>
+      <label
+        >Elegir video local
+        <input id="file" type="file" accept="video/*" /></label
+      ><video
+        id="movie"
+        hidden
+        controls
+        playsinline
+        style="
+          width: 100%;
+          max-height: 78vh;
+          margin-top: 24px;
+          background: #080e0b;
+        "
+      ></video>
+      <p id="note" role="status"></p>
+    </main>
+    <script type="module" src="/src/player.js"></script>
+  </body>
+</html>

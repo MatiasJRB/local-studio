@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Local Take · Pantalla y reacción</title>
+    <link rel="stylesheet" href="/src/studio.css" />
+  </head>
+  <body>
+    <header>
+      <strong>Local Take</strong><span>Todo queda en tu equipo</span>
+    </header>
+    <main>
+      <div class="intro">
+        <h1>Tu pantalla. Tu reacción.</h1>
+        <p>
+          Grabá una demo o un video reacción en horizontal, con tu cámara y voz.
+        </p>
+      </div>
+      <div class="workspace">
+        <section class="preview">
+          <div class="stage-wrap">
+            <canvas
+              id="stage"
+              width="1920"
+              height="1080"
+              aria-label="Encuadre de la grabación horizontal"
+            ></canvas>
+            <div id="camera-edit" hidden>
+              <button
+                id="camera-move"
+                aria-label="Mover cámara: arrastrá o usá las flechas"
+                title="Arrastrá para mover. Flechas para ajustar."
+              ></button
+              ><button
+                id="camera-resize"
+                aria-label="Cambiar tamaño de cámara: arrastrá o usá las flechas"
+                title="Arrastrá para cambiar el tamaño. Flechas para ajustar."
+              >
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M5 15 15 5M10 15h5v-5" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <p class="edit-tip">
+            Arrastrá tu cámara para moverla. Arrastrá el tirador de la esquina
+            para cambiar su tamaño.
+          </p>
+          <div class="transport">
+            <span id="clock">00:00:00</span
+            ><span id="format">1920 × 1080 · 16:9 · 30 fps objetivo</span>
+          </div>
+          <p id="status" role="status" aria-live="polite">
+            Elegí una pantalla para empezar. Todavía no se está grabando.
+          </p>
+          <div class="actions">
+            <button id="record" class="primary" disabled>Grabar</button
+            ><button id="stop" disabled>Detener y guardar</button
+            ><button id="release">Apagar fuentes</button>
+          </div>
+          <section id="result" hidden>
+            <h2>Toma terminada</h2>
+            <p id="result-note"></p>
+            <a id="download" hidden>Descargar video</a
+            ><video id="playback" controls playsinline hidden></video
+            ><button id="review-file" hidden>Revisar archivo guardado</button>
+          </section>
+        </section>
+        <aside>
+          <section>
+            <h2>Fuentes</h2>
+            <button id="screen" class="wide">
+              Elegir pantalla, ventana o pestaña
+            </button>
+            <p id="screen-state">Pantalla desconectada.</p>
+            <div class="row">
+              <label
+                ><input id="want-camera" type="checkbox" checked />
+                Cámara</label
+              ><label
+                ><input id="want-mic" type="checkbox" checked />
+                Micrófono</label
+              >
+            </div>
+            <button id="devices" class="wide">
+              Preparar cámara y micrófono
+            </button>
+            <p id="device-state">Cámara y micrófono apagados.</p>
+            <label for="mic-device">Micrófono</label
+            ><select id="mic-device">
+              <option value="">Predeterminado</option></select
+            ><label for="camera-device">Cámara</label
+            ><select id="camera-device">
+              <option value="">Predeterminada</option>
+            </select>
+            <div class="levels">
+              <label
+                >Tu voz
+                <meter id="mic-meter" min="0" max="1" value="0"></meter></label
+              ><label
+                >Audio de la fuente
+                <meter id="source-meter" min="0" max="1" value="0"></meter
+              ></label>
+            </div>
+            <p id="source-audio">
+              Sin audio de la fuente. Para una reacción, elegí la pestaña del
+              video y activá Compartir audio.
+            </p>
+          </section>
+          <section>
+            <h2>Encuadre</h2>
+            <label for="corner">Posición de tu cámara</label
+            ><select id="corner">
+              <option value="custom" hidden>Posición libre</option>
+              <option value="bottom-right" selected>Abajo a la derecha</option>
+              <option value="bottom-left">Abajo a la izquierda</option>
+              <option value="top-right">Arriba a la derecha</option>
+              <option value="top-left">Arriba a la izquierda</option></select
+            ><label for="size">Tamaño de tu cámara</label
+            ><input
+              id="size"
+              type="range"
+              min="0.12"
+              max="0.65"
+              step="0.01"
+              value="0.28"
+            /><label
+              ><input id="mirror" type="checkbox" checked /> Cámara en
+              espejo</label
+            ><label for="shape">Forma de la cámara</label
+            ><select id="shape">
+              <option value="circle">Círculo</option>
+              <option value="rounded">Cuadrado redondeado</option></select
+            ><button id="reset-camera" class="wide">
+              Restablecer cámara y estilo
+            </button>
+            <p>El encuadre y el estilo se recuerdan en este navegador.</p>
+          </section>
+          <section>
+            <h2>Borde</h2>
+            <label for="border-color">Color del borde</label
+            ><input id="border-color" type="color" value="#f7f3ec" /><label
+              for="border-width"
+              >Grosor <output id="border-width-value">3 px</output></label
+            ><input
+              id="border-width"
+              type="range"
+              min="0"
+              max="24"
+              step="1"
+              value="3"
+            /><label for="border-opacity"
+              >Opacidad <output id="border-opacity-value">100%</output></label
+            ><input
+              id="border-opacity"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+            />
+            <p>
+              Grosor cero oculta el borde. Los píxeles se refieren al video en
+              1080p.
+            </p>
+          </section>
+          <section>
+            <h2>Sombra</h2>
+            <label
+              ><input id="shadow-on" type="checkbox" /> Activar sombra</label
+            ><label for="shadow-color">Color de la sombra</label
+            ><input id="shadow-color" type="color" value="#000000" /><label
+              for="shadow-opacity"
+              >Opacidad <output id="shadow-opacity-value">45%</output></label
+            ><input
+              id="shadow-opacity"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value="0.45"
+            /><label for="shadow-blur"
+              >Suavidad <output id="shadow-blur-value">20 px</output></label
+            ><input
+              id="shadow-blur"
+              type="range"
+              min="0"
+              max="80"
+              step="1"
+              value="20"
+            /><label for="shadow-x"
+              >Desplazamiento horizontal
+              <output id="shadow-x-value">0 px</output></label
+            ><input
+              id="shadow-x"
+              type="range"
+              min="-60"
+              max="60"
+              value="0"
+            /><label for="shadow-y"
+              >Desplazamiento vertical
+              <output id="shadow-y-value">10 px</output></label
+            ><input id="shadow-y" type="range" min="-60" max="60" value="10" />
+          </section>
+          <section>
+            <h2>Video</h2>
+            <label for="quality">Resolución</label
+            ><select id="quality">
+              <option value="1080">1080p · detalle de pantalla</option>
+              <option value="720">720p · archivo más liviano</option>
+            </select>
+          </section>
+          <section>
+            <h2>Antes de la toma</h2>
+            <p>
+              Usá auriculares para que el micrófono no vuelva a grabar el audio
+              del video.
+            </p>
+            <p>
+              Para una demo, elegí tu ventana de trabajo. Para una reacción,
+              abrí el video en una pestaña de Chrome. También podés
+              <a href="player.html" target="_blank" rel="noopener"
+                >abrir un video local</a
+              >.
+            </p>
+            <p>
+              Probá 10 segundos y revisá imagen y ambos audios antes de la
+              grabación larga. Dejá el equipo despierto.
+            </p>
+            <p id="storage">
+              Al grabar, elegís dónde guardar. El archivo se finaliza al tocar
+              Detener y guardar; no cierres el estudio mientras graba.
+            </p>
+          </section>
+        </aside>
+      </div>
+      <footer>
+        Grabación local en WebM. La fuente entra completa, sin recortar; si su
+        proporción es distinta, quedan márgenes negros. Cámara y voz se mezclan
+        en el mismo video. No hay subida ni streaming.
+      </footer>
+    </main>
+    <video id="screen-video" muted playsinline hidden></video
+    ><video id="camera-video" muted playsinline hidden></video>
+    <script type="module" src="/src/studio.js"></script>
+  </body>
+</html>
