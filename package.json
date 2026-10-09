@@ -1,5 +1,5 @@
 {
-  "name": "local-take",
+  "name": "local-studio",
   "version": "0.1.0",
   "description": "Local screen, camera and audio recording with a live camera editor.",
   "private": true,

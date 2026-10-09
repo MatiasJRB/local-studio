@@ -1,4 +1,4 @@
-# Local Take
+# Local Studio
 
 Grabá pantalla, cámara y audio en un solo video, con un editor de cámara en vivo. Todo se procesa en el navegador y se guarda en tu equipo.
 
@@ -22,8 +22,8 @@ Para demos, tutoriales y videos reacción. Sin cuentas, servicios de grabación 
 Requiere Node.js 20.19.x, 22.13+ o 24+ y un navegador de escritorio con `getDisplayMedia` y `MediaRecorder`. Chrome de escritorio es el entorno recomendado y probado; las fuentes de audio disponibles dependen del navegador, sistema operativo y permisos.
 
 ```bash
-git clone https://github.com/MatiasJRB/local-take.git
-cd local-take
+git clone https://github.com/MatiasJRB/local-studio.git
+cd local-studio
 npm ci
 npm run dev
 ```
