@@ -1,4 +1,4 @@
-# Local Take — instrucciones de desarrollo
+# Local Studio — instrucciones de desarrollo
 
 Herramienta personal open source para grabar pantalla, cámara y audio localmente. Documentación y UI en español; código, comentarios y commits en inglés.
 

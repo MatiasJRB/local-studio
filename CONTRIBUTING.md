@@ -1,4 +1,4 @@
-# Contribuir a Local Take
+# Contribuir a Local Studio
 
 ## Preparar el entorno
 
