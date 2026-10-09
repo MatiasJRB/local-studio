@@ -1,5 +1,7 @@
 # Contribuir a Local Studio
 
+Para arquitectura, límites y detalle de checks, consultá [la referencia técnica](docs/TECHNICAL.md). Si un agente va a operar el estudio, su entrada es [AGENTS.md](AGENTS.md) y [la guía de operación](docs/AGENT.md).
+
 ## Preparar el entorno
 
 Node.js 20.19.x, 22.13+ o 24+, `npm ci` y `npm run dev`. Para E2E: `npx playwright install chromium`.

@@ -1,6 +1,12 @@
-# Local Studio — instrucciones de desarrollo
+# Local Studio — instrucciones para agentes
 
 Herramienta personal open source para grabar pantalla, cámara y audio localmente. Documentación y UI en español; código, comentarios y commits en inglés.
+
+## Punto de entrada
+
+Para operar el estudio por pedido del usuario, leé [docs/AGENT.md](docs/AGENT.md). Para uso manual, [docs/USAGE.md](docs/USAGE.md). Para instalación, arquitectura y límites, [docs/TECHNICAL.md](docs/TECHNICAL.md). El README es la landing pública: conservarlo centrado en funcionalidades y casos de uso.
+
+El agente usa los controles existentes de la interfaz para configurar el estudio según lo que pide el usuario. No hay un agente embebido ni un protocolo de automatización dedicado.
 
 ## Contrato
 
